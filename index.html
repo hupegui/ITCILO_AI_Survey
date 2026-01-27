@@ -145,8 +145,8 @@
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Survey sent correctly!</h3>
                 <p class="text-gray-600 mb-6 px-4 text-sm">Before you go, would you like to print or save a PDF copy of your answers?</p>
                 <div class="flex flex-col gap-3">
-                    <button onclick="window.print()" class="w-full py-3 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-900">Yes, Print / Save PDF</button>
-                    <button onclick="location.reload()" class="w-full py-3 bg-gray-100 text-gray-600 rounded-xl font-bold">No, just Close</button>
+                   <button onclick="window.print(); setTimeout(() => { location.reload(); }, 500);" class="w-full py-3 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-900">Yes, Print / Save PDF</button>
+                   <button onclick="location.reload()" class="w-full py-3 bg-gray-100 text-gray-600 rounded-xl font-bold">No, just Close</button>
                 </div>
             </div>
         </div>
