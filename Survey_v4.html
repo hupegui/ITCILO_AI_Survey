@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic AI Survey 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .survey-container { border: none; box-shadow: none; width: 100%; max-width: 100%; }
+        }
+        .modal-active { overflow: hidden; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen py-8 px-4">
+
+    <div id="app" class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8 survey-container border border-gray-100">
+        <header class="mb-8 border-b border-indigo-100 pb-6">
+            <h1 class="text-3xl font-extrabold text-indigo-800">AI Services Research Survey</h1>
+            <div class="mt-4 p-4 bg-indigo-50 rounded-lg text-sm text-indigo-900 leading-relaxed italic">
+                <strong>Disclaimer:</strong> Participation in this survey is strictly voluntary and anonymous. Data is collected for academic purposes only. You may choose to skip any question or answer only what you feel comfortable with. Aggregated and anonymized results will be shared with the course participants.
+            </div>
+        </header>
+
+        <form id="surveyForm" class="space-y-10">
+            
+            <section>
+                <label class="block text-lg font-bold text-gray-800 mb-4">1. Which of the following services do you use? (Select one or more)</label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" name="services" value="Mistral" class="w-5 h-5 rounded text-indigo-600"> <span>Mistral</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" name="services" value="Copilot" class="w-5 h-5 rounded text-indigo-600"> <span>Copilot</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" name="services" value="ChatGPT" class="w-5 h-5 rounded text-indigo-600"> <span>ChatGPT</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" name="services" value="Gemini" class="w-5 h-5 rounded text-indigo-600"> <span>Gemini</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" name="services" value="Grok" class="w-5 h-5 rounded text-indigo-600"> <span>Grok</span></label>
+                    <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" name="services" value="Claude" class="w-5 h-5 rounded text-indigo-600"> <span>Claude</span></label>
+                </div>
+                <div class="mt-4 space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <input type="checkbox" name="services" value="Other" class="w-5 h-5 rounded text-indigo-600"> 
+                        <span class="font-medium">Other:</span>
+                        <input type="text" name="other_service_details" placeholder="Which one?" class="border-b border-gray-300 focus:border-indigo-500 outline-none flex-1 px-2">
+                    </div>
+                    <label class="flex items-center space-x-3 text-gray-500 italic"><input type="checkbox" name="services" value="N/A" class="w-5 h-5 rounded border-gray-300"> <span>Prefer not to say / Don't know</span></label>
+                </div>
+            </section>
+
+            <section>
+                <label class="block text-lg font-bold text-gray-800 mb-4">2. On which type of device do you use these services most frequently? (Select one)</label>
+                <div class="space-y-3">
+                    <label class="flex items-center space-x-3"><input type="radio" name="device" value="Desktop" class="w-5 h-5 text-indigo-600"> <span>Desktop/Laptop computers</span></label>
+                    <label class="flex items-center space-x-3"><input type="radio" name="device" value="Mobile Phone" class="w-5 h-5 text-indigo-600"> <span>Mobile devices (Smartphones)</span></label>
+                    <label class="flex items-center space-x-3"><input type="radio" name="device" value="Tablet" class="w-5 h-5 text-indigo-600"> <span>Mobile devices (Tablets/iPads)</span></label>
+                    <label class="flex items-center space-x-3 text-gray-500 italic"><input type="radio" name="device" value="N/A" class="w-5 h-5 text-gray-400"> <span>Prefer not to say / Don't know</span></label>
+                </div>
+            </section>
+
+            <section>
+                <label class="block text-lg font-bold text-gray-800 mb-4">3. Why do you use any of these services? (Select one or more)</label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Search Info" class="w-4 h-4"> <span>Search for information</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Review Text" class="w-4 h-4"> <span>Review text written by you</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Generate Text" class="w-4 h-4"> <span>Generate text</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Summarize" class="w-4 h-4"> <span>Summarize documents</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Meeting Protocols" class="w-4 h-4"> <span>Protocolize meetings</span></label>
+                    <div class="flex items-center space-x-3">
+                        <input type="checkbox" name="usage" value="Other" class="w-4 h-4"> 
+                        <span>Other:</span>
+                        <input type="text" name="other_usage_details" class="border-b border-gray-300 w-24 outline-none px-1">
+                    </div>
+                    <label class="flex items-center space-x-3 text-gray-500 italic col-span-full"><input type="checkbox" name="usage" value="N/A" class="w-4 h-4"> <span>Prefer not to say / Don't know</span></label>
+                </div>
+            </section>
+
+            <section>
+                <label class="block text-lg font-bold text-gray-800 mb-4">4. Are you interested in knowing more about any of these services?</label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest" value="Mistral" class="w-4 h-4"> <span>Mistral</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest" value="Copilot" class="w-4 h-4"> <span>Copilot</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest" value="ChatGPT" class="w-4 h-4"> <span>ChatGPT</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest" value="Gemini" class="w-4 h-4"> <span>Gemini</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest" value="Grok" class="w-4 h-4"> <span>Grok</span></label>
+                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest" value="Claude" class="w-4 h-4"> <span>Claude</span></label>
+                    <label class="flex items-center space-x-3 text-gray-500 italic col-span-full mt-2"><input type="checkbox" name="interest" value="N/A" class="w-4 h-4"> <span>Prefer not to say / Don't know</span></label>
+                </div>
+            </section>
+
+            <section>
+                <label class="block text-lg font-bold text-gray-800 mb-4">5. For what purpose do you use them most frequently? (Select one)</label>
+                <div class="flex flex-col space-y-3">
+                    <label class="flex items-center space-x-3"><input type="radio" name="intent" value="Work" class="w-5 h-5"> <span>Work / Professional</span></label>
+                    <label class="flex items-center space-x-3"><input type="radio" name="intent" value="Personal" class="w-5 h-5"> <span>Personal life</span></label>
+                    <label class="flex items-center space-x-3 text-gray-500 italic"><input type="radio" name="intent" value="N/A" class="w-5 h-5"> <span>Prefer not to say / Don't know</span></label>
+                </div>
+            </section>
+
+            <section>
+                <label class="block text-lg font-bold text-gray-800 mb-4">6. How would you rate your knowledge regarding Artificial Intelligence?</label>
+                <select name="ai_level" class="w-full p-3 border border-gray-300 rounded-xl bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <option value="N/A">Prefer not to say / Don't know</option>
+                    <option value="Level 1">Level 1: No knowledge / Never used it</option>
+                    <option value="Level 2">Level 2: Basic</option>
+                    <option value="Level 3">Level 3: Intermediate</option>
+                    <option value="Level 4">Level 4: Advanced</option>
+                    <option value="Level 5">Level 5: Expert</option>
+                </select>
+            </section>
+
+            <section>
+                <label class="block text-lg font-bold text-gray-800 mb-4">7. Additional comments (Optional)</label>
+                <textarea name="comments" rows="3" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Share your thoughts..."></textarea>
+            </section>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-8 border-t border-gray-100 no-print">
+                <button type="reset" class="w-full sm:flex-1 bg-gray-100 text-gray-600 px-8 py-3 rounded-xl font-bold hover:bg-gray-200 order-2 sm:order-1">Clear Form</button>
+                <button type="button" id="openModalBtn" class="w-full sm:flex-1 bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-indigo-700 shadow-lg shadow-indigo-200 order-1 sm:order-2">Submit</button>
+                <button type="button" onclick="window.print()" class="w-full sm:flex-1 bg-slate-800 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-900 order-3">Export PDF</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="confirmModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl text-center">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Anonymous Submission</h3>
+            <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+                Your answers will be sent to our secure, anonymous database. No personal identification is collected.
+            </p>
+            <div class="flex gap-3">
+                <button id="closeModalBtn" class="flex-1 py-3 bg-gray-100 text-gray-600 rounded-xl font-bold">Cancel</button>
+                <button id="confirmSendBtn" class="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const surveyForm = document.getElementById('surveyForm');
+        const confirmModal = document.getElementById('confirmModal');
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const confirmSendBtn = document.getElementById('confirmSendBtn');
+        
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxRoJuVi7ckXZ5dejLBy3RegnbosYjli95FWrBP6ww9KX3r4S8c7-Behp9gHIQ0mzxdHQ/exec';
+
+        openModalBtn.onclick = () => {
+            confirmModal.classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        };
+
+        closeModalBtn.onclick = () => {
+            confirmModal.classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        };
+
+        confirmSendBtn.onclick = async () => {
+            const fd = new FormData(surveyForm);
+            const response = {
+                id: crypto.randomUUID(),
+                date: new Date().toLocaleString(),
+                services: fd.getAll('services'),
+                other_service: fd.get('other_service_details'),
+                device: fd.get('device'),
+                usage: fd.getAll('usage'),
+                other_usage: fd.get('other_usage_details'),
+                interests: fd.getAll('interest'),
+                intent: fd.get('intent'),
+                knowledge_level: fd.get('ai_level'),
+                comments: fd.get('comments')
+            };
+
+            confirmSendBtn.innerText = "Sending...";
+            confirmSendBtn.disabled = true;
+
+            try {
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(response)
+                });
+
+                confirmModal.classList.add('hidden');
+                document.body.classList.remove('modal-active');
+                alert("Thank you! Your response has been recorded.");
+                
+            } catch (error) {
+                alert("Error sending data. Please check your connection.");
+            } finally {
+                confirmSendBtn.innerText = "Send";
+                confirmSendBtn.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>
