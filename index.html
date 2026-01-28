@@ -275,7 +275,7 @@
             const q7Container = document.getElementById('q7_container');
             q7Container.innerHTML = '';
             translations[lang].q7_levels.forEach((text, i) => {
-                q7Container.innerHTML += `<label class="flex items-start space-x-3"><input type="radio" name="proficiency" value="Level ${i+1}" class="w-5 h-5 text-indigo-600 focus:ring-indigo-500 flex-shrink-0"><span class="text-sm text-gray-700 leading-relax ">${text}</span></label>`;
+                q7Container.innerHTML += `<label class="flex items-start space-x-3"><input type="radio" name="proficiency"  value="Level ${i+1}" class="w-5 h-5 text-indigo-600 focus:ring-indigo-500 flex-shrink-0"><span class="text-sm text-gray-700 leading-relax ">${text}</span></label>`;
 
             });
         }
@@ -298,21 +298,48 @@
             btn.classList.remove('bg-indigo-600', 'hover:bg-indigo-700'); //
             btn.classList.add('bg-gray-400', 'cursor-not-allowed'); //
 
+           
             // --- SEGUNDO: RECOLECTAMOS LOS DATOS ---
             const fd = new FormData(document.getElementById('surveyForm'));
+
+            // Lógica para combinar intereses (Preguntas 4 y 5)
+            let interestsList = [
+                ...fd.getAll('interest_usage'), 
+                ...fd.getAll('interest_apps')
+            ];
+
             const data = {
-                id: crypto.randomUUID(),
-                date: new Date().toLocaleString(),
-                services: fd.getAll('services'),
-                device: fd.get('device'),
-                usage: fd.getAll('usage'),
-                interest_usage: fd.getAll('interest_usage'),
-                interest_apps: fd.getAll('interest_apps'),
-                intent: fd.get('intent'),
-                proficiency: fd.get('proficiency'),
-                comments: fd.get('comments'),
-                lang: lang
+                // Coinciden con los encabezados de tu imagen
+                ID: crypto.randomUUID(), 
+                Date: new Date().toLocaleString(), 
+                
+                // Pregunta 1: Aplicaciones
+                Services: fd.getAll('services').join(", "),
+                Other_Service: fd.get('other_service_details') || "", 
+
+                // Pregunta 2: Dispositivo
+                Device: fd.get('device') || "", 
+
+                // Pregunta 3: Uso actual
+                Usage: fd.getAll('usage').join(", "),
+                Other_Usage: fd.get('other_usage_details') || "", 
+
+                // Preguntas 4 y 5: Intereses (Columna H)
+                Interests: interestsList.join(", "), 
+
+                // Pregunta 6: Intención (Personal/Profesional)
+                Intent: fd.get('intent') || "", 
+
+                // Pregunta 7: Nivel de conocimiento (Columna J)
+                Knowledge_Level: fd.get('proficiency') || "", 
+
+                // Pregunta 8: Comentarios (Columna K)
+                Comments: fd.get('comments') || "",
+
+                // Dato extra para tu control
+                lang: lang 
             };
+        
 
             // --- TERCERO: ENVIAMOS ---
             try {
