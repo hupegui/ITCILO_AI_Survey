@@ -1,363 +1,837 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Academic AI Survey 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @media print {
-            .no-print, #confirmModal, #langSelect { display: none !important; }
-            body { background: white; }
-            .survey-container { border: none; box-shadow: none; width: 100%; max-width: 100%; margin: 0; padding: 0; }
+      @media print {
+        .no-print,
+        #confirmModal,
+        #langSelect {
+          display: none !important;
         }
+        body {
+          background: white;
+        }
+        .survey-container {
+          border: none;
+          box-shadow: none;
+          width: 100%;
+          max-width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+      }
     </style>
-</head>
-<body class="bg-slate-50 min-h-screen py-8 px-4">
+  </head>
+  <body class="bg-slate-50 min-h-screen py-8 px-4">
+    <div
+      id="app"
+      class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8 survey-container border border-gray-100"
+    >
+      <header class="mb-8 border-b border-indigo-100 pb-6">
+        <div
+          class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+        >
+          <h1 class="text-3xl font-extrabold text-indigo-800" data-i18n="title">
+            Generative AI Applications Survey
+          </h1>
+          <select
+            id="langSelect"
+            class="p-2 border border-indigo-200 rounded-lg text-sm bg-white outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="de">Deutsch</option>
+            <option value="fr">Français</option>
+          </select>
+        </div>
+        <div
+          class="mt-4 p-4 bg-indigo-50 rounded-lg text-sm text-indigo-900 leading-relaxed"
+        >
+          <span data-i18n="disclaimer"
+            >Participation in this survey is strictly voluntary and anonymous.
+            Data is collected for academic purposes only. You may choose to skip
+            any question and answer only what you feel comfortable with.
+            Aggregated and anonymized results will be shared with the course
+            participants.</span
+          >
+        </div>
+      </header>
 
-    <div id="app" class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8 survey-container border border-gray-100">
-        <header class="mb-8 border-b border-indigo-100 pb-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <h1 class="text-3xl font-extrabold text-indigo-800" data-i18n="title">Generative AI Applications Survey</h1>
-                <select id="langSelect" class="p-2 border border-indigo-200 rounded-lg text-sm bg-white outline-none focus:ring-2 focus:ring-indigo-500">
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                    <option value="de">Deutsch</option>
-                    <option value="fr">Français</option>
-                </select>
+      <form id="surveyForm" class="space-y-10">
+        <section>
+          <label
+            class="block text-lg font-bold text-gray-800 mb-4"
+            data-i18n="q1"
+            >1. Which of the following Generative AI Applications do you use?
+            (Select one or more)</label
+          >
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="services"
+                value="Mistral"
+                class="w-5 h-5 text-indigo-600"
+              />
+              <span>Mistral</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="services"
+                value="Copilot"
+                class="w-5 h-5 text-indigo-600"
+              />
+              <span>Copilot</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="services"
+                value="ChatGPT"
+                class="w-5 h-5 text-indigo-600"
+              />
+              <span>ChatGPT</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="services"
+                value="Gemini"
+                class="w-5 h-5 text-indigo-600"
+              />
+              <span>Gemini</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="services"
+                value="Grok"
+                class="w-5 h-5 text-indigo-600"
+              />
+              <span>Grok</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="services"
+                value="Claude"
+                class="w-5 h-5 text-indigo-600"
+              />
+              <span>Claude</span></label
+            >
+          </div>
+          <div class="mt-4 space-y-3">
+            <div class="flex items-center space-x-3">
+              <input
+                type="checkbox"
+                name="services"
+                value="Other"
+                class="w-5 h-5"
+              />
+              <span data-i18n="other">Other(s):</span>
+              <input
+                type="text"
+                name="other_service_details"
+                class="border-b border-gray-300 outline-none flex-1 px-2"
+              />
             </div>
-            <div class="mt-4 p-4 bg-indigo-50 rounded-lg text-sm text-indigo-900 leading-relaxed">
-                <span data-i18n="disclaimer">Participation in this survey is strictly voluntary and anonymous. Data is collected for academic purposes only. You may choose to skip any question and answer only what you feel comfortable with. Aggregated and anonymized results will be shared with the course participants.</span>
+            <label class="flex items-center space-x-3 text-gray-500 italic">
+              <input
+                type="checkbox"
+                name="services"
+                value="N/A"
+                class="w-5 h-5"
+              />
+              <span data-i18n="prefer_not">Prefer not to say / Don't know</span>
+            </label>
+          </div>
+        </section>
+
+        <section>
+          <label
+            class="block text-lg font-bold text-gray-800 mb-4"
+            data-i18n="q2"
+            >2. On which type of device do you use these services most
+            frequently? (Select one)</label
+          >
+          <div class="space-y-3">
+            <label class="flex items-center space-x-3"
+              ><input
+                type="radio"
+                name="device"
+                value="Desktop"
+                class="w-5 h-5"
+              />
+              <span data-i18n="q2_o1">Desktop/Laptop computers</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="radio"
+                name="device"
+                value="Mobile Phone"
+                class="w-5 h-5"
+              />
+              <span data-i18n="q2_o2">Mobile devices (Smartphones)</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="radio"
+                name="device"
+                value="Tablet"
+                class="w-5 h-5"
+              />
+              <span data-i18n="q2_o3"
+                >Mobile devices (Tablets/iPads)</span
+              ></label
+            >
+            <label class="flex items-center space-x-3 text-gray-500 italic"
+              ><input type="radio" name="device" value="N/A" class="w-5 h-5" />
+              <span data-i18n="prefer_not"
+                >Prefer not to say / Don't know</span
+              ></label
+            >
+          </div>
+        </section>
+
+        <section>
+          <label
+            class="block text-lg font-bold text-gray-800 mb-4"
+            data-i18n="q3"
+            >3. What for do you use any of these services? (Select one or
+            more)</label
+          >
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="usage"
+                value="Search"
+                class="w-4 h-4"
+              />
+              <span data-i18n="search">Search for information</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="usage"
+                value="Review"
+                class="w-4 h-4"
+              />
+              <span data-i18n="review">Review text written by you</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="usage"
+                value="Generate Text"
+                class="w-4 h-4"
+              />
+              <span data-i18n="generate_text">Generate text</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="usage"
+                value="Summarize"
+                class="w-4 h-4"
+              />
+              <span data-i18n="summarize">Summarize documents</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="usage"
+                value="Protocol"
+                class="w-4 h-4"
+              />
+              <span data-i18n="protocolize">Protocolize meetings</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="usage"
+                value="Coding"
+                class="w-4 h-4"
+              />
+              <span data-i18n="coding"
+                >Help with coding / debugging</span
+              ></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="usage"
+                value="Images"
+                class="w-4 h-4"
+              />
+              <span data-i18n="generate_images">Generate images</span></label
+            >
+            <div class="flex items-center space-x-3">
+              <input
+                type="checkbox"
+                name="usage"
+                value="Other"
+                class="w-4 h-4"
+              />
+              <span data-i18n="other">Other(s):</span>
+              <input
+                type="text"
+                name="other_usage_details"
+                class="border-b border-gray-300 w-24 outline-none px-1"
+              />
             </div>
-        </header>
+            <label class="flex items-center space-x-3 text-gray-500 italic"
+              ><input
+                type="checkbox"
+                name="usage"
+                value="N/A"
+                class="w-4 h-4"
+              />
+              <span data-i18n="prefer_not"
+                >Prefer not to say / Don't know</span
+              ></label
+            >
+          </div>
+        </section>
 
-        <form id="surveyForm" class="space-y-10">
-            <section>
-                <label class="block text-lg font-bold text-gray-800 mb-4" data-i18n="q1">1. Which of the following Generative AI Applications do you use? (Select one or more)</label>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="services" value="Mistral" class="w-5 h-5 text-indigo-600"> <span>Mistral</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="services" value="Copilot" class="w-5 h-5 text-indigo-600"> <span>Copilot</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="services" value="ChatGPT" class="w-5 h-5 text-indigo-600"> <span>ChatGPT</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="services" value="Gemini" class="w-5 h-5 text-indigo-600"> <span>Gemini</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="services" value="Grok" class="w-5 h-5 text-indigo-600"> <span>Grok</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="services" value="Claude" class="w-5 h-5 text-indigo-600"> <span>Claude</span></label>
-                </div>
-                <div class="mt-4 space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <input type="checkbox" name="services" value="Other" class="w-5 h-5"> 
-                        <span data-i18n="other">Other(s):</span>
-                        <input type="text" name="other_service_details" class="border-b border-gray-300 outline-none flex-1 px-2">
-                    </div>
-                    <label class="flex items-center space-x-3 text-gray-500 italic">
-                        <input type="checkbox" name="services" value="N/A" class="w-5 h-5"> 
-                        <span data-i18n="prefer_not">Prefer not to say / Don't know</span>
-                    </label>
-                </div>
-            </section>
+        <section>
+          <label
+            class="block text-lg font-bold text-gray-800 mb-4"
+            data-i18n="q4"
+            >4. Are you interested in knowing more about any of these services?
+            (Select one or more)</label
+          >
+          <div
+            id="q4_options"
+            class="grid grid-cols-1 md:grid-cols-2 gap-3"
+          ></div>
+        </section>
 
-            <section>
-                <label class="block text-lg font-bold text-gray-800 mb-4" data-i18n="q2">2. On which type of device do you use these services most frequently? (Select one)</label>
-                <div class="space-y-3">
-                    <label class="flex items-center space-x-3"><input type="radio" name="device" value="Desktop" class="w-5 h-5"> <span data-i18n="q2_o1">Desktop/Laptop computers</span></label>
-                    <label class="flex items-center space-x-3"><input type="radio" name="device" value="Mobile Phone" class="w-5 h-5"> <span data-i18n="q2_o2">Mobile devices (Smartphones)</span></label>
-                    <label class="flex items-center space-x-3"><input type="radio" name="device" value="Tablet" class="w-5 h-5"> <span data-i18n="q2_o3">Mobile devices (Tablets/iPads)</span></label>
-                    <label class="flex items-center space-x-3 text-gray-500 italic"><input type="radio" name="device" value="N/A" class="w-5 h-5"> <span data-i18n="prefer_not">Prefer not to say / Don't know</span></label>
-                </div>
-            </section>
+        <section>
+          <label
+            class="block text-lg font-bold text-gray-800 mb-4"
+            data-i18n="q5"
+            >5. Are you interested in knowing more about any of these Generative
+            AI Applications?</label
+          >
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="interest_apps"
+                value="Mistral"
+                class="w-4 h-4"
+              />
+              <span>Mistral</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="interest_apps"
+                value="Copilot"
+                class="w-4 h-4"
+              />
+              <span>Copilot</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="interest_apps"
+                value="ChatGPT"
+                class="w-4 h-4"
+              />
+              <span>ChatGPT</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="interest_apps"
+                value="Gemini"
+                class="w-4 h-4"
+              />
+              <span>Gemini</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="interest_apps"
+                value="Grok"
+                class="w-4 h-4"
+              />
+              <span>Grok</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="checkbox"
+                name="interest_apps"
+                value="Claude"
+                class="w-4 h-4"
+              />
+              <span>Claude</span></label
+            >
+          </div>
+          <label class="flex items-center space-x-3 mt-3 text-gray-500 italic"
+            ><input
+              type="checkbox"
+              name="interest_apps"
+              value="N/A"
+              class="w-4 h-4"
+            />
+            <span data-i18n="prefer_not"
+              >Prefer not to say / Don't know</span
+            ></label
+          >
+        </section>
 
-            <section>
-                <label class="block text-lg font-bold text-gray-800 mb-4" data-i18n="q3">3. What for do you use any of these services? (Select one or more)</label>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Search" class="w-4 h-4"> <span data-i18n="use_o1">Search for information</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Review" class="w-4 h-4"> <span data-i18n="use_o2">Review text written by you</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Generate Text" class="w-4 h-4"> <span data-i18n="use_o3">Generate text</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Summarize" class="w-4 h-4"> <span data-i18n="use_o4">Summarize documents</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Protocol" class="w-4 h-4"> <span data-i18n="use_o5">Protocolize meetings</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Coding" class="w-4 h-4"> <span data-i18n="use_o6">Help with coding / debugging</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="usage" value="Images" class="w-4 h-4"> <span data-i18n="use_o7">Generate images</span></label>
-                    <div class="flex items-center space-x-3">
-                        <input type="checkbox" name="usage" value="Other" class="w-4 h-4"> <span data-i18n="other">Other(s):</span>
-                        <input type="text" name="other_usage_details" class="border-b border-gray-300 w-24 outline-none px-1">
-                    </div>
-                    <label class="flex items-center space-x-3 text-gray-500 italic"><input type="checkbox" name="usage" value="N/A" class="w-4 h-4"> <span data-i18n="prefer_not">Prefer not to say / Don't know</span></label>
-                </div>
-            </section>
+        <section>
+          <label
+            class="block text-lg font-bold text-gray-800 mb-4"
+            data-i18n="q6"
+            >6. For what purpose do you use them most frequently? (Select
+            one)</label
+          >
+          <div class="space-y-3">
+            <label class="flex items-center space-x-3"
+              ><input type="radio" name="intent" value="Work" class="w-5 h-5" />
+              <span data-i18n="q6_o1">Work / Professional</span></label
+            >
+            <label class="flex items-center space-x-3"
+              ><input
+                type="radio"
+                name="intent"
+                value="Personal"
+                class="w-5 h-5"
+              />
+              <span data-i18n="q6_o2">Personal life</span></label
+            >
+            <label class="flex items-center space-x-3 text-gray-500 italic"
+              ><input type="radio" name="intent" value="N/A" class="w-5 h-5" />
+              <span data-i18n="prefer_not"
+                >Prefer not to say / Don't know</span
+              ></label
+            >
+          </div>
+        </section>
 
-            <section>
-                <label class="block text-lg font-bold text-gray-800 mb-4" data-i18n="q4">4. Are you interested in knowing more about any of these services? (Select one or more)</label>
-                <div id="q4_options" class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    </div>
-            </section>
+        <section>
+          <label
+            class="block text-lg font-bold text-gray-800 mb-4"
+            data-i18n="q7"
+            >7. How would you rate your proficiency with Generative AI
+            Applications (e.g., Mistral, ChatGPT, Copilot, Gemini, etc.)?</label
+          >
+          <div class="space-y-4" id="q7_container"></div>
+        </section>
 
-            <section>
-                <label class="block text-lg font-bold text-gray-800 mb-4" data-i18n="q5">5. Are you interested in knowing more about any of these Generative AI Applications?</label>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest_apps" value="Mistral" class="w-4 h-4"> <span>Mistral</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest_apps" value="Copilot" class="w-4 h-4"> <span>Copilot</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest_apps" value="ChatGPT" class="w-4 h-4"> <span>ChatGPT</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest_apps" value="Gemini" class="w-4 h-4"> <span>Gemini</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest_apps" value="Grok" class="w-4 h-4"> <span>Grok</span></label>
-                    <label class="flex items-center space-x-3"><input type="checkbox" name="interest_apps" value="Claude" class="w-4 h-4"> <span>Claude</span></label>
-                </div>
-                <label class="flex items-center space-x-3 mt-3 text-gray-500 italic"><input type="checkbox" name="interest_apps" value="N/A" class="w-4 h-4"> <span data-i18n="prefer_not">Prefer not to say / Don't know</span></label>
-            </section>
+        <section>
+          <label
+            class="block text-lg font-bold text-gray-800 mb-4"
+            data-i18n="q8"
+            >8. Additional comments (Optional)</label
+          >
+          <textarea
+            name="comments"
+            rows="3"
+            class="w-full p-4 border border-gray-300 rounded-xl outline-none"
+          ></textarea>
+        </section>
 
-            <section>
-                <label class="block text-lg font-bold text-gray-800 mb-4" data-i18n="q6">6. For what purpose do you use them most frequently? (Select one)</label>
-                <div class="space-y-3">
-                    <label class="flex items-center space-x-3"><input type="radio" name="intent" value="Work" class="w-5 h-5"> <span data-i18n="q6_o1">Work / Professional</span></label>
-                    <label class="flex items-center space-x-3"><input type="radio" name="intent" value="Personal" class="w-5 h-5"> <span data-i18n="q6_o2">Personal life</span></label>
-                    <label class="flex items-center space-x-3 text-gray-500 italic"><input type="radio" name="intent" value="N/A" class="w-5 h-5"> <span data-i18n="prefer_not">Prefer not to say / Don't know</span></label>
-                </div>
-            </section>
-
-            <section>
-                <label class="block text-lg font-bold text-gray-800 mb-4" data-i18n="q7">7. How would you rate your proficiency with Generative AI Applications (e.g., Mistral, ChatGPT, Copilot, Gemini, etc.)?</label>
-                <div class="space-y-4" id="q7_container">
-                    </div>
-            </section>
-
-            <section>
-                <label class="block text-lg font-bold text-gray-800 mb-4" data-i18n="q8">8. Additional comments (Optional)</label>
-                <textarea name="comments" rows="3" class="w-full p-4 border border-gray-300 rounded-xl outline-none"></textarea>
-            </section>
-
-            <div class="flex gap-4 pt-8 no-print">
-                <button type="reset" class="flex-1 bg-gray-100 text-gray-600 px-8 py-3 rounded-xl font-bold" data-i18n="btn_clear">Clear Form</button>
-                <button type="button" id="openModalBtn" class="flex-1 bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold" data-i18n="btn_submit">Submit</button>
-            </div>
-        </form>
+        <div class="flex gap-4 pt-8 no-print">
+          <button
+            type="reset"
+            class="flex-1 bg-gray-100 text-gray-600 px-8 py-3 rounded-xl font-bold"
+            data-i18n="btn_clear"
+          >
+            Clear Form
+          </button>
+          <button
+            type="button"
+            id="openModalBtn"
+            class="flex-1 bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold"
+            data-i18n="btn_submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
 
-    <div id="confirmModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl">
-            <div id="modalConfirmState">
-                <h3 class="text-xl font-bold text-gray-900 mb-4 text-center" data-i18n="m1_t">Anonymous Submission</h3>
-                <p class="text-sm text-gray-600 mb-6 leading-relaxed" data-i18n="m1_c">This information is sent to an anonymous repository where it is collected along with other surveys. No personal data or identification is being saved or sent.</p>
-                <div class="flex gap-3">
-                    <button id="closeModalBtn" class="flex-1 py-3 bg-gray-100 text-gray-600 rounded-xl font-bold" data-i18n="btn_cancel">Cancel</button>
-                    <button id="confirmSendBtn" class="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold" data-i18n="btn_send">Send</button>
-                </div>
-            </div>
-            <div id="modalSuccessState" class="hidden text-center">
-                <div class="mb-4 text-green-500 text-6xl">✓</div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="m2_t">Survey sent correctly!</h3>
-                <p class="text-gray-600 mb-6 text-sm" data-i18n="m2_c">Before you go, would you like to print or save a PDF copy of your answers?</p>
-                <div class="flex flex-col gap-3">
-                    <button onclick="window.print(); setTimeout(() => { location.reload(); }, 500);" class="w-full py-3 bg-slate-800 text-white rounded-xl font-bold" data-i18n="btn_pdf">Yes, Print / Save PDF</button>
-                    <button onclick="location.reload()" class="w-full py-3 bg-gray-100 text-gray-600 rounded-xl font-bold" data-i18n="btn_close">No, just Close</button>
-                </div>
-            </div>
+    <div
+      id="confirmModal"
+      class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50"
+    >
+      <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl">
+        <div id="modalConfirmState">
+          <h3
+            class="text-xl font-bold text-gray-900 mb-4 text-center"
+            data-i18n="m1_t"
+          >
+            Anonymous Submission
+          </h3>
+          <p
+            class="text-sm text-gray-600 mb-6 leading-relaxed"
+            data-i18n="m1_c"
+          >
+            This information is sent to an anonymous repository where it is
+            collected along with other surveys. No personal data or
+            identification is being saved or sent.
+          </p>
+          <div class="flex gap-3">
+            <button
+              id="closeModalBtn"
+              class="flex-1 py-3 bg-gray-100 text-gray-600 rounded-xl font-bold"
+              data-i18n="btn_cancel"
+            >
+              Cancel
+            </button>
+            <button
+              id="confirmSendBtn"
+              class="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold"
+              data-i18n="btn_send"
+            >
+              Send
+            </button>
+          </div>
         </div>
+        <div id="modalSuccessState" class="hidden text-center">
+          <div class="mb-4 text-green-500 text-6xl">✓</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="m2_t">
+            Survey sent correctly!
+          </h3>
+          <p class="text-gray-600 mb-6 text-sm" data-i18n="m2_c">
+            Before you go, would you like to print or save a PDF copy of your
+            answers?
+          </p>
+          <div class="flex flex-col gap-3">
+            <button
+              onclick="
+                window.print();
+                setTimeout(() => {
+                  location.reload();
+                }, 500);
+              "
+              class="w-full py-3 bg-slate-800 text-white rounded-xl font-bold"
+              data-i18n="btn_pdf"
+            >
+              Yes, Print / Save PDF
+            </button>
+            <button
+              onclick="location.reload()"
+              class="w-full py-3 bg-gray-100 text-gray-600 rounded-xl font-bold"
+              data-i18n="btn_close"
+            >
+              No, just Close
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        const translations = {
-            en: {
-                title: "Generative AI Applications Survey",
-                disclaimer: "Announcement: Participation in this survey is strictly voluntary and anonymous. Data is collected for academic purposes only. You may choose to skip any question and answer only what you feel comfortable with. Aggregated and anonymized results will be shared with the course participants.",
-                q1: "1. Which of the following Generative AI Applications do you use? (Select one or more)",
-                q2: "2. On which type of device do you use these services most frequently? (Select one)",
-                q2_o1: "Desktop/Laptop computers", q2_o2: "Mobile devices (Smartphones)", q2_o3: "Mobile devices (Tablets/iPads)",
-                q3: "3. What for do you use any of these services? (Select one or more)",
-                use_o1: "Search for information", use_o2: "Review text written by you", use_o3: "Generate text", use_o4: "Summarize documents", use_o5: "Protocolize meetings", use_o6: "Help with coding / debugging", use_o7: "Generate images",
-                q4: "4. Are you interested in knowing more about any of these services? (Select one or more)",
-                q5: "5. Are you interested in knowing more about any of these Generative AI Applications?",
-                q6: "6. For what purpose do you use them most frequently? (Select one)",
-                q6_o1: "Work / Professional", q6_o2: "Personal life",
-                q7: "7. How would you rate your proficiency with Generative AI Applications (e.g., Mistral, ChatGPT, Copilot, Gemini, etc.)?",
-                q7_levels: [
-                    "Level 1: Novice – No prior knowledge or experience.",
-                    "Level 2: Beginner – I have experimented with it a few times for basic queries.",
-                    "Level 3: Intermediate – I use it regularly for routine tasks like emails, summaries, and general outputs.",
-                    "Level 4: Advanced – I can provide instructions to handle complex requests, such as refining outputs, analyzing information, or creating comprehensive documents and reports."
-                ],
-                q8: "8. Additional comments (Optional)",
-                other: "Other(s):", prefer_not: "Prefer not to say / Don't know",
-                btn_clear: "Clear Form", btn_submit: "Submit", btn_cancel: "Cancel", btn_send: "Send", sending: "Sending...", btn_pdf: "Yes, Print / Save PDF", btn_close: "No, just Close",
-                m1_t: "Anonymous Submission", m1_c: "This information is sent to an anonymous repository where it is collected along with other surveys. No personal data or identification is being saved or sent.",
-                m2_t: "Survey sent correctly!", m2_c: "Before you go, would you like to print or save a PDF copy of your answers?"
-            },
-            es: {
-                title: "Encuesta sobre Aplicaciones de IA Generativa",
-                disclaimer: "Anuncio: La participación en esta encuesta es estrictamente voluntaria y anónima. Los datos se recopilan únicamente con fines académicos. Puede optar por omitir cualquier pregunta o responder solo aquello con lo que se sienta cómodo. Los resultados agregados y anonimizados se compartirán con los participantes del curso.",
-                q1: "1. ¿Cuáles de las siguientes Aplicaciones de IA Generativa utiliza? (Seleccione una o más)",
-                q2: "2. ¿En qué tipo de dispositivo utiliza estos servicios con más frecuencia? (Seleccione uno)",
-                q2_o1: "Ordenadores de sobremesa/portátiles", q2_o2: "Dispositivos móviles (Smartphones)", q2_o3: "Dispositivos móviles (Tablets/iPads)",
-                q3: "3. ¿Para qué utiliza alguno de estos servicios? (Seleccione uno o más)",
-                use_o1: "Buscar información", use_o2: "Revisar texto escrito por usted", use_o3: "Generar texto", use_o4: "Resumir documentos", use_o5: "Protocolizar reuniones", use_o6: "Ayuda con programación / depuración", use_o7: "Generar imágenes",
-                q4: "4. ¿Le interesa conocer más sobre alguno de estos servicios? (Seleccione uno o más)",
-                q5: "5. ¿Le interesa conocer más sobre alguna de estas Aplicaciones de IA Generativa?",
-                q6: "6. ¿Con qué propósito los utiliza con más frecuencia? (Seleccione uno)",
-                q6_o1: "Trabajo / Profesional", q6_o2: "Vida personal",
-                q7: "7. ¿Cómo calificaría su competencia con las Aplicaciones de IA Generativa (ej. Mistral, ChatGPT, Copilot, Gemini, etc.)?",
-                q7_levels: [
-                    "Nivel 1: Novato – Sin conocimientos ni experiencia previa.",
-                    "Nivel 2: Principiante – He experimentado algunas veces para consultas básicas.",
-                    "Nivel 3: Intermedio – Las utilizo regularmente para tareas rutinarias como correos electrónicos, resúmenes y resultados generales",
-                    "Nivel 4: Avanzado – Puedo dar instrucciones para gestionar solicitudes complejas, como refinar resultados, analizar información o crear documentos e informes completos."
-                ],
-                q8: "8. Comentarios adicionales (Opcional)",
-                other: "Otro(s):", prefer_not: "Prefiero no decir / No lo sé",
-                btn_clear: "Borrar Formulario", btn_submit: "Enviar", sending: "Enviando...", btn_cancel: "Cancelar", btn_send: "Enviar", btn_pdf: "Sí, Imprimir / Guardar PDF", btn_close: "No, solo Cerrar",
-                m1_t: "Envío Anónimo", m1_c: "Esta información se envía a un repositorio anónimo. No se guarda ni se envía ningún dato personal o identificación.",
-                m2_t: "¡Encuesta enviada correctamente!", m2_c: "¿Le gustaría imprimir o guardar una copia en PDF de sus respuestas?"
-            },
-            de: {
-                title: "Umfrage zu generativen KI-Anwendungen",
-                disclaimer:"Ankündigung: Die Teilnahme an dieser Umfrage ist streng freiwillig und anonym. Die Daten werden ausschließlich für akademische Zwecke erhoben. Sie können jede Frage überspringen oder nur das beantworten, womit Sie sich wohlfühlen. Die aggregierten und anonymisierten Ergebnisse werden den Kursteilnehmern zur Verfügung gestellt.",
-                q1: "1. Welche der folgenden generativen KI-Anwendungen nutzen Sie? (Mehrfachauswahl)",
-                q2: "2. Auf welchem Gerät nutzen Sie diese Dienste am häufigsten? (Einfachauswahl)",
-                q2_o1: "Desktop/Laptop-Computer", q2_o2: "Mobilgeräte (Smartphones)", q2_o3: "Mobilgeräte (Tablets/iPads)",
-                q3: "3. Wofür nutzen Sie diese Dienste? (Mehrfachauswahl)",
-                use_o1: "Informationen suchen", use_o2: "Eigene Texte prüfen", use_o3: "Texte generieren", use_o4: "Dokumente zusammenfassen", use_o5: "Protokolle erstellen", use_o6: "Programmierung / Debugging", use_o7: "Bilder generieren",
-                q4: "4. Möchten Sie mehr über diese Dienste erfahren? (Mehrfachauswahl)",
-                q5: "5. Möchten Sie mehr über eine dieser generativen KI-Anwendungen erfahren?",
-                q6: "6. Zu welchem Zweck nutzen Sie diese am häufigsten? (Einfachauswahl)",
-                q6_o1: "Beruflich / Arbeit", q6_o2: "Privatleben",
-                q7: "7. Wie bewerten Sie Ihre Kenntnisse im Umgang mit generativen KI-Anwendungen (z. B. Mistral, ChatGPT, Copilot, Gemini usw.)?",
-                q7_levels: [
-                    "Stufe 1: Anfänger – Keine Vorkenntnisse oder Erfahrung.",
-                    "Stufe 2: Einsteiger – Ich habe es ein paar Mal für einfache Abfragen ausprobiert.",
-                    "Stufe 3: Fortgeschritten – Ich nutze sie regelmäßig für Routineaufgaben wie E-Mails, Zusammenfassungen und allgemeine Texte",
-                    "Stufe 4: Experte – Ich kann präzise Anweisungen für komplexe Aufgaben geben, wie das Verfeinern von Ergebnissen, das Analysieren von Informationen oder das Erstellen umfassender Dokumente und Berichte."
-                ],
-                q8: "8. Zusätzliche Kommentare (Optional)",
-                other: "Andere:", prefer_not: "Keine Angabe / Weiß nicht",
-                btn_clear: "Löschen", btn_submit: "Absenden", btn_cancel: "Abbrechen", btn_send: "Senden", sending: "Wird gesendet...", btn_pdf: "Ja, Drucken / PDF", btn_close: "Nein, schließen",
-                m1_t: "Anonyme Übermittlung", m1_c: "Diese Informationen werden an ein anonymes Repository gesendet. Es werden keine persönlichen Daten gespeichert.",
-                m2_t: "Erfolgreich gesendet!", m2_c: "Möchten Sie eine PDF-Kopie Ihrer Antworten drucken oder speichern?"
-            },
-            fr: {
-                title: "Enquête sur les applications d'IA générative",
-                disclaimer: "Annonce: La participation à ce sondage est strictement volontaire et anonyme. Les données sont collectées à des fins académiques uniquement. Vous pouvez choisir de sauter n'importe quelle question ou de ne répondre qu'à ce qui vous met à l'aise. Les résultats agrégés et anonymisés seront partagés avec les participants au cours.",
-                q1: "1. Lesquelles de ces applications d'IA générative utilisez-vous ? (Plusieurs choix)",
-                q2: "2. Sur quel appareil utilisez-vous ces services le plus souvent ?",
-                q2_o1: "Ordinateurs (Bureau/Portable)", q2_o2: "Smartphones", q2_o3: "Tablettes/iPads",
-                q3: "3. Pourquoi utilisez-vous ces services ? (Plusieurs choix)",
-                use_o1: "Rechercher des informations", use_o2: "Réviser vos textes", use_o3: "Générer du texte", use_o4: "Résumer des documents", use_o5: "Protocoliser des réunions", use_o6: "Aide au codage / débogage", use_o7: "Générer des images",
-                q4: "4. Souhaitez-vous en savoir plus sur l'un de ces services ?",
-                q5: "5. Souhaitez-vous en savoir plus sur l'une de ces applications d'IA générative ?",
-                q6: "6. À quelle fin les utilisez-vous le plus fréquemment ?",
-                q6_o1: "Travail / Professionnel", q6_o2: "Vie privée",
-                q7: "7. Comment évalueriez-vous votre compétence avec les applications d'IA générative (ex. Mistral, ChatGPT, Copilot, Gemini, etc.) ?",
-                q7_levels: [
-                    "Niveau 1 : Novice – Aucune connaissance préalable.",
-                    "Niveau 2 : Débutant – J'ai expérimenté quelques fois pour des requêtes simples.",
-                    "Niveau 3 : Intermédiaire – Je les utilise régulièrement pour des tâches courantes (e-mails, résumés, contenus simples)",
-                    "Niveau 4 : Avancé – Je sais donner des instructions pour gérer des demandes complexes, comme affiner des résultats, analyser des informations ou créer des documents et rapports complets"
-                ],
-                q8: "8. Commentaires (Optionnel)",
-                other: "Autre(s) :", prefer_not: "Préfère ne pas répondre",
-                btn_clear: "Effacer", btn_submit: "Soumettre", btn_cancel: "Annuler", btn_send: "Envoyer", sending: "Envoi en cours...", btn_pdf: "Oui, Imprimer / PDF", btn_close: "Non, fermer",
-                m1_t: "Soumission anonyme", m1_c: "Ces informations sont envoyées à un dépôt anonyme. Aucune donnée personnelle n'est enregistrée.",
-                m2_t: "Envoyé avec succès !", m2_c: "Voulez-vous imprimer ou sauvegarder une copie PDF ?"
-            }
+      const translations = {
+        en: {
+          title: "Generative AI Applications Survey",
+          disclaimer:
+            "Announcement: Participation in this survey is strictly voluntary and anonymous. Data is collected for academic purposes only. You may choose to skip any question and answer only what you feel comfortable with. Aggregated and anonymized results will be shared with the course participants.",
+          q1: "1. Which of the following Generative AI Applications do you use? (Select one or more)",
+          q2: "2. On which type of device do you use these services most frequently? (Select one)",
+          q2_o1: "Desktop/Laptop computers",
+          q2_o2: "Mobile devices (Smartphones)",
+          q2_o3: "Mobile devices (Tablets/iPads)",
+          q3: "3. What for do you use any of these services? (Select one or more)",
+          search: "Search for information",
+          review: "Review text written by you",
+          generate_text: "Generate text",
+          summarize: "Summarize documents",
+          protocolize: "Protocolize meetings",
+          coding: "Help with coding / debugging",
+          generate_images: "Generate images",
+          q4: "4. Are you interested in knowing more about any of these services? (Select one or more)",
+          q5: "5. Are you interested in knowing more about any of these Generative AI Applications?",
+          q6: "6. For what purpose do you use them most frequently? (Select one)",
+          q6_o1: "Work / Professional",
+          q6_o2: "Personal life",
+          q7: "7. How would you rate your proficiency with Generative AI Applications (e.g., Mistral, ChatGPT, Copilot, Gemini, etc.)?",
+          q7_levels: [
+            "Level 1: Novice – No prior knowledge or experience.",
+            "Level 2: Beginner – I have experimented with it a few times for basic queries.",
+            "Level 3: Intermediate – I use it regularly for routine tasks like emails, summaries, and general outputs.",
+            "Level 4: Advanced – I can provide instructions to handle complex requests, such as refining outputs, analyzing information, or creating comprehensive documents and reports.",
+          ],
+          q8: "8. Additional comments (Optional)",
+          other: "Other(s):",
+          prefer_not: "Prefer not to say / Don't know",
+          btn_clear: "Clear Form",
+          btn_submit: "Submit",
+          btn_cancel: "Cancel",
+          btn_send: "Send",
+          sending: "Sending...",
+          btn_pdf: "Yes, Print / Save PDF",
+          btn_close: "No, just Close",
+          m1_t: "Anonymous Submission",
+          m1_c: "This information is sent to an anonymous repository where it is collected along with other surveys. No personal data or identification is being saved or sent.",
+          m2_t: "Survey sent correctly!",
+          m2_c: "Before you go, would you like to print or save a PDF copy of your answers?",
+        },
+        es: {
+          title: "Encuesta sobre Aplicaciones de IA Generativa",
+          disclaimer:
+            "Anuncio: La participación en esta encuesta es estrictamente voluntaria y anónima. Los datos se recopilan únicamente con fines académicos. Puede optar por omitir cualquier pregunta o responder solo aquello con lo que se sienta cómodo. Los resultados agregados y anonimizados se compartirán con los participantes del curso.",
+          q1: "1. ¿Cuáles de las siguientes Aplicaciones de IA Generativa utiliza? (Seleccione una o más)",
+          q2: "2. ¿En qué tipo de dispositivo utiliza estos servicios con más frecuencia? (Seleccione uno)",
+          q2_o1: "Ordenadores de sobremesa/portátiles",
+          q2_o2: "Dispositivos móviles (Smartphones)",
+          q2_o3: "Dispositivos móviles (Tablets/iPads)",
+          q3: "3. ¿Para qué utiliza alguno de estos servicios? (Seleccione uno o más)",
+          search: "Buscar información",
+          review: "Revisar texto escrito por usted",
+          generate_text: "Generar texto",
+          summarize: "Resumir documentos",
+          protocolize: "Protocolizar reuniones",
+          coding: "Ayuda con programación / depuración",
+          generate_images: "Generar imágenes",
+          q4: "4. ¿Le interesa conocer más sobre alguno de estos servicios? (Seleccione uno o más)",
+          q5: "5. ¿Le interesa conocer más sobre alguna de estas Aplicaciones de IA Generativa?",
+          q6: "6. ¿Con qué propósito los utiliza con más frecuencia? (Seleccione uno)",
+          q6_o1: "Trabajo / Profesional",
+          q6_o2: "Vida personal",
+          q7: "7. ¿Cómo calificaría su competencia con las Aplicaciones de IA Generativa (ej. Mistral, ChatGPT, Copilot, Gemini, etc.)?",
+          q7_levels: [
+            "Nivel 1: Novato – Sin conocimientos ni experiencia previa.",
+            "Nivel 2: Principiante – He experimentado algunas veces para consultas básicas.",
+            "Nivel 3: Intermedio – Las utilizo regularmente para tareas rutinarias como correos electrónicos, resúmenes y resultados generales",
+            "Nivel 4: Avanzado – Puedo dar instrucciones para gestionar solicitudes complejas, como refinar resultados, analizar información o crear documentos e informes completos.",
+          ],
+          q8: "8. Comentarios adicionales (Opcional)",
+          other: "Otro(s):",
+          prefer_not: "Prefiero no decir / No lo sé",
+          btn_clear: "Borrar Formulario",
+          btn_submit: "Enviar",
+          sending: "Enviando...",
+          btn_cancel: "Cancelar",
+          btn_send: "Enviar",
+          btn_pdf: "Sí, Imprimir / Guardar PDF",
+          btn_close: "No, solo Cerrar",
+          m1_t: "Envío Anónimo",
+          m1_c: "Esta información se envía a un repositorio anónimo. No se guarda ni se envía ningún dato personal o identificación.",
+          m2_t: "¡Encuesta enviada correctamente!",
+          m2_c: "¿Le gustaría imprimir o guardar una copia en PDF de sus respuestas?",
+        },
+        de: {
+          title: "Umfrage zu generativen KI-Anwendungen",
+          disclaimer:
+            "Ankündigung: Die Teilnahme an dieser Umfrage ist streng freiwillig und anonym. Die Daten werden ausschließlich für akademische Zwecke erhoben. Sie können jede Frage überspringen oder nur das beantworten, womit Sie sich wohlfühlen. Die aggregierten und anonymisierten Ergebnisse werden den Kursteilnehmern zur Verfügung gestellt.",
+          q1: "1. Welche der folgenden generativen KI-Anwendungen nutzen Sie? (Mehrfachauswahl)",
+          q2: "2. Auf welchem Gerät nutzen Sie diese Dienste am häufigsten? (Einfachauswahl)",
+          q2_o1: "Desktop/Laptop-Computer",
+          q2_o2: "Mobilgeräte (Smartphones)",
+          q2_o3: "Mobilgeräte (Tablets/iPads)",
+          q3: "3. Wofür nutzen Sie diese Dienste? (Mehrfachauswahl)",
+          search: "Informationen suchen",
+          review: "Eigene Texte prüfen",
+          generate_text: "Texte generieren",
+          summarize: "Dokumente zusammenfassen",
+          protocolize: "Protokolle erstellen",
+          coding: "Programmierung / Debugging",
+          generate_images: "Bilder generieren",
+          q4: "4. Möchten Sie mehr über diese Dienste erfahren? (Mehrfachauswahl)",
+          q5: "5. Möchten Sie mehr über eine dieser generativen KI-Anwendungen erfahren?",
+          q6: "6. Zu welchem Zweck nutzen Sie diese am häufigsten? (Einfachauswahl)",
+          q6_o1: "Beruflich / Arbeit",
+          q6_o2: "Privatleben",
+          q7: "7. Wie bewerten Sie Ihre Kenntnisse im Umgang mit generativen KI-Anwendungen (z. B. Mistral, ChatGPT, Copilot, Gemini usw.)?",
+          q7_levels: [
+            "Stufe 1: Anfänger – Keine Vorkenntnisse oder Erfahrung.",
+            "Stufe 2: Einsteiger – Ich habe es ein paar Mal für einfache Abfragen ausprobiert.",
+            "Stufe 3: Fortgeschritten – Ich nutze sie regelmäßig für Routineaufgaben wie E-Mails, Zusammenfassungen und allgemeine Texte",
+            "Stufe 4: Experte – Ich kann präzise Anweisungen für komplexe Aufgaben geben, wie das Verfeinern von Ergebnissen, das Analysieren von Informationen oder das Erstellen umfassender Dokumente und Berichte.",
+          ],
+          q8: "8. Zusätzliche Kommentare (Optional)",
+          other: "Andere:",
+          prefer_not: "Keine Angabe / Weiß nicht",
+          btn_clear: "Löschen",
+          btn_submit: "Absenden",
+          btn_cancel: "Abbrechen",
+          btn_send: "Senden",
+          sending: "Wird gesendet...",
+          btn_pdf: "Ja, Drucken / PDF",
+          btn_close: "Nein, schließen",
+          m1_t: "Anonyme Übermittlung",
+          m1_c: "Diese Informationen werden an ein anonymes Repository gesendet. Es werden keine persönlichen Daten gespeichert.",
+          m2_t: "Erfolgreich gesendet!",
+          m2_c: "Möchten Sie eine PDF-Kopie Ihrer Antworten drucken oder speichern?",
+        },
+        fr: {
+          title: "Enquête sur les applications d'IA générative",
+          disclaimer:
+            "Annonce: La participation à ce sondage est strictement volontaire et anonyme. Les données sont collectées à des fins académiques uniquement. Vous pouvez choisir de sauter n'importe quelle question ou de ne répondre qu'à ce qui vous met à l'aise. Les résultats agrégés et anonymisés seront partagés avec les participants au cours.",
+          q1: "1. Lesquelles de ces applications d'IA générative utilisez-vous ? (Plusieurs choix)",
+          q2: "2. Sur quel appareil utilisez-vous ces services le plus souvent ?",
+          q2_o1: "Ordinateurs (Bureau/Portable)",
+          q2_o2: "Smartphones",
+          q2_o3: "Tablettes/iPads",
+          q3: "3. Pourquoi utilisez-vous ces services ? (Plusieurs choix)",
+          search: "Rechercher des informations",
+          review: "Réviser vos textes",
+          generate_text: "Générer du texte",
+          summarize: "Résumer des documents",
+          protocolize: "Protocoliser des réunions",
+          coding: "Aide au codage / débogage",
+          generate_images: "Générer des images",
+          q4: "4. Souhaitez-vous en savoir plus sur l'un de ces services ?",
+          q5: "5. Souhaitez-vous en savoir plus sur l'une de ces applications d'IA générative ?",
+          q6: "6. À quelle fin les utilisez-vous le plus fréquemment ?",
+          q6_o1: "Travail / Professionnel",
+          q6_o2: "Vie privée",
+          q7: "7. Comment évalueriez-vous votre compétence avec les applications d'IA générative (ex. Mistral, ChatGPT, Copilot, Gemini, etc.) ?",
+          q7_levels: [
+            "Niveau 1 : Novice – Aucune connaissance préalable.",
+            "Niveau 2 : Débutant – J'ai expérimenté quelques fois pour des requêtes simples.",
+            "Niveau 3 : Intermédiaire – Je les utilise régulièrement pour des tâches courantes (e-mails, résumés, contenus simples)",
+            "Niveau 4 : Avancé – Je sais donner des instructions pour gérer des demandes complexes, comme affiner des résultats, analyser des informations ou créer des documents et rapports complets",
+          ],
+          q8: "8. Commentaires (Optionnel)",
+          other: "Autre(s) :",
+          prefer_not: "Préfère ne pas répondre",
+          btn_clear: "Effacer",
+          btn_submit: "Soumettre",
+          btn_cancel: "Annuler",
+          btn_send: "Envoyer",
+          sending: "Envoi en cours...",
+          btn_pdf: "Oui, Imprimer / PDF",
+          btn_close: "Non, fermer",
+          m1_t: "Soumission anonyme",
+          m1_c: "Ces informations sont envoyées à un dépôt anonyme. Aucune donnée personnelle n'est enregistrée.",
+          m2_t: "Envoyé avec succès !",
+          m2_c: "Voulez-vous imprimer ou sauvegarder une copie PDF ?",
+        },
+      };
+
+      function updateUI(lang) {
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (translations[lang][key]) el.innerText = translations[lang][key];
+        });
+
+        // Rebuild Q4 (Interest in usage types)
+        const q4Container = document.getElementById("q4_options");
+        q4Container.innerHTML = "";
+        const usageKeys = [
+          "search",
+          "review",
+          "generate_text",
+          "summarize",
+          "protocolize",
+          "coding",
+          "generate_images",
+        ];
+        usageKeys.forEach((key, i) => {
+          q4Container.innerHTML += `<label class="flex items-center space-x-3"><input type="checkbox" name="interest_usage" value="${key}" class="w-4 h-4"> <span>${translations[lang][key]}</span></label>`;
+        });
+        q4Container.innerHTML += `<div class="flex items-center space-x-3"><input type="checkbox" name="interest_usage" value="Other" class="w-4 h-4"> <span>${translations[lang].other}</span><input type="text" name="other_interest_details" class="border-b border-gray-300 w-24 outline-none px-1"></div>`;
+        q4Container.innerHTML += `<label class="flex items-center space-x-3 text-gray-500 italic"><input type="checkbox" name="interest_usage" value="N/A" class="w-4 h-4"> <span>${translations[lang].prefer_not}</span></label>`;
+
+        // Rebuild Q7 (Proficiency levels)
+        const q7Container = document.getElementById("q7_container");
+        q7Container.innerHTML = "";
+        translations[lang].q7_levels.forEach((text, i) => {
+          q7Container.innerHTML += `<label class="flex items-start space-x-3"><input type="radio" name="proficiency"  value="Level ${i + 1}" class="w-5 h-5 text-indigo-600 focus:ring-indigo-500 flex-shrink-0"><span class="text-sm text-gray-700 leading-relax ">${text}</span></label>`;
+        });
+      }
+
+      document
+        .getElementById("langSelect")
+        .addEventListener("change", (e) => updateUI(e.target.value));
+      updateUI("en");
+
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbxRoJuVi7ckXZ5dejLBy3RegnbosYjli95FWrBP6ww9KX3r4S8c7-Behp9gHIQ0mzxdHQ/exec";
+
+      document.getElementById("openModalBtn").onclick = () =>
+        document.getElementById("confirmModal").classList.remove("hidden");
+      document.getElementById("closeModalBtn").onclick = () =>
+        document.getElementById("confirmModal").classList.add("hidden");
+
+      document.getElementById("confirmSendBtn").onclick = async () => {
+        const lang = document.getElementById("langSelect").value;
+        const btn = document.getElementById("confirmSendBtn");
+
+        // --- PRIMERO: BLOQUEAMOS Y CAMBIAMOS EL BOTÓN ---
+        btn.disabled = true; //
+        btn.innerText = translations[lang].sending; //
+        btn.classList.remove("bg-indigo-600", "hover:bg-indigo-700"); //
+        btn.classList.add("bg-gray-400", "cursor-not-allowed"); //
+
+        // --- SEGUNDO: RECOLECTAMOS LOS DATOS ---
+        const fd = new FormData(document.getElementById("surveyForm"));
+
+        // 1. Unificamos Intereses (Preguntas 4 y 5) y sus "Others"
+        let interestsList = [
+          ...fd.getAll("interest_usage"),
+          ...fd.getAll("interest_apps"),
+        ];
+        const otherInt = fd.get("other_interest_details"); // Asegúrate que este sea el name en el HTML
+        if (otherInt && otherInt.trim() !== "")
+          interestsList.push("Other: " + otherInt.trim());
+
+        const data = {
+          // Los nombres a la IZQUIERDA deben coincidir con la Fila 1 de tu Excel
+          ID: crypto.randomUUID(),
+          Date: new Date().toLocaleString(),
+
+          // Q1: Aplicaciones
+          Services: fd.getAll("services").join(", "),
+          Other_Service: fd.get("other_service_details") || "",
+
+          // Q2: Dispositivo
+          Device: fd.get("device") || "",
+
+          // Q3: Uso actual
+          Usage: fd.getAll("usage").join(", "),
+          Other_Usage: fd.get("other_usage_details") || "",
+
+          // Q4 y Q5: Intereses unificados
+          Interests: interestsList.join(", "),
+
+          // Q6: Intención (Work/Personal)
+          Intent: fd.get("intent") || "",
+
+          // Q7: Nivel de conocimiento (Knowledge_Level en Excel)
+          Knowledge_Level: fd.get("proficiency") || "",
+
+          // Q8: Comentarios
+          Comments: fd.get("comments") || "",
+
+          lang: lang,
         };
 
-        function updateUI(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.innerText = translations[lang][key];
-            });
+        // --- TERCERO: ENVIAMOS ---
+        try {
+          await fetch(scriptURL, {
+            method: "POST",
+            mode: "no-cors",
+            body: JSON.stringify(data),
+          }); //
+          document.getElementById("modalConfirmState").classList.add("hidden"); //
+          document
+            .getElementById("modalSuccessState")
+            .classList.remove("hidden"); //
+        } catch (e) {
+          console.error("Error:", e);
+          alert("Error sending survey.");
 
-            // Rebuild Q4 (Interest in usage types)
-            const q4Container = document.getElementById('q4_options');
-            q4Container.innerHTML = '';
-            const usageKeys = ['use_o1', 'use_o2', 'use_o3', 'use_o4', 'use_o5', 'use_o6', 'use_o7'];
-            usageKeys.forEach((key, i) => {
-                q4Container.innerHTML += `<label class="flex items-center space-x-3"><input type="checkbox" name="interest_usage" value="${key}" class="w-4 h-4"> <span>${translations[lang][key]}</span></label>`;
-            });
-            q4Container.innerHTML += `<div class="flex items-center space-x-3"><input type="checkbox" name="interest_usage" value="Other" class="w-4 h-4"> <span>${translations[lang].other}</span><input type="text" name="other_interest_details" class="border-b border-gray-300 w-24 outline-none px-1"></div>`;
-            q4Container.innerHTML += `<label class="flex items-center space-x-3 text-gray-500 italic"><input type="checkbox" name="interest_usage" value="N/A" class="w-4 h-4"> <span>${translations[lang].prefer_not}</span></label>`;
-
-            // Rebuild Q7 (Proficiency levels)
-            const q7Container = document.getElementById('q7_container');
-            q7Container.innerHTML = '';
-            translations[lang].q7_levels.forEach((text, i) => {
-                q7Container.innerHTML += `<label class="flex items-start space-x-3"><input type="radio" name="proficiency"  value="Level ${i+1}" class="w-5 h-5 text-indigo-600 focus:ring-indigo-500 flex-shrink-0"><span class="text-sm text-gray-700 leading-relax ">${text}</span></label>`;
-
-            });
+          // REVERTIR EL BOTÓN SI HAY ERROR
+          btn.disabled = false; //
+          btn.innerText = translations[lang].btn_send; //
+          btn.classList.remove("bg-gray-400", "cursor-not-allowed"); //
+          btn.classList.add("bg-indigo-600", "hover:bg-indigo-700"); //
         }
-
-        document.getElementById('langSelect').addEventListener('change', (e) => updateUI(e.target.value));
-        updateUI('en');
-
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxRoJuVi7ckXZ5dejLBy3RegnbosYjli95FWrBP6ww9KX3r4S8c7-Behp9gHIQ0mzxdHQ/exec';
-
-        document.getElementById('openModalBtn').onclick = () => document.getElementById('confirmModal').classList.remove('hidden');
-        document.getElementById('closeModalBtn').onclick = () => document.getElementById('confirmModal').classList.add('hidden');
-
-        document.getElementById('confirmSendBtn').onclick = async () => {
-            const lang = document.getElementById('langSelect').value;
-            const btn = document.getElementById('confirmSendBtn');
-
-            // --- PRIMERO: BLOQUEAMOS Y CAMBIAMOS EL BOTÓN ---
-            btn.disabled = true; //
-            btn.innerText = translations[lang].sending; //
-            btn.classList.remove('bg-indigo-600', 'hover:bg-indigo-700'); //
-            btn.classList.add('bg-gray-400', 'cursor-not-allowed'); //
-
-           
-            // --- SEGUNDO: RECOLECTAMOS LOS DATOS ---
-            const fd = new FormData(document.getElementById('surveyForm'));
-
-            // Lógica para combinar intereses (Preguntas 4 y 5)
-            let interestsList = [
-                ...fd.getAll('interest_usage'), 
-                ...fd.getAll('interest_apps')
-            ];
-
-            const data = {
-                // Coinciden con los encabezados de tu imagen
-                ID: crypto.randomUUID(), 
-                Date: new Date().toLocaleString(), 
-                
-                // Pregunta 1: Aplicaciones
-                Services: fd.getAll('services').join(", "),
-                Other_Service: fd.get('other_service_details') || "", 
-
-                // Pregunta 2: Dispositivo
-                Device: fd.get('device') || "", 
-
-                // Pregunta 3: Uso actual
-                Usage: fd.getAll('usage').join(", "),
-                Other_Usage: fd.get('other_usage_details') || "", 
-
-                // Preguntas 4 y 5: Intereses (Columna H)
-                Interests: interestsList.join(", "), 
-
-                // Pregunta 6: Intención (Personal/Profesional)
-                Intent: fd.get('intent') || "", 
-
-                // Pregunta 7: Nivel de conocimiento (Columna J)
-                Knowledge_Level: fd.get('proficiency') || "", 
-
-                // Pregunta 8: Comentarios (Columna K)
-                Comments: fd.get('comments') || "",
-
-                // Dato extra para tu control
-                lang: lang 
-            };
-        
-
-            // --- TERCERO: ENVIAMOS ---
-            try {
-                await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) }); //
-                document.getElementById('modalConfirmState').classList.add('hidden'); //
-                document.getElementById('modalSuccessState').classList.remove('hidden'); //
-            } catch (e) {
-                console.error("Error:", e);
-                alert("Error sending survey.");
-                
-                // REVERTIR EL BOTÓN SI HAY ERROR
-                btn.disabled = false; //
-                btn.innerText = translations[lang].btn_send; //
-                btn.classList.remove('bg-gray-400', 'cursor-not-allowed'); //
-                btn.classList.add('bg-indigo-600', 'hover:bg-indigo-700'); //
-            }
-        };
-    
+      };
     </script>
-</body>
+  </body>
 </html>
