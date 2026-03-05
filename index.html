@@ -747,8 +747,12 @@
       document
         .getElementById("langSelect")
         .addEventListener("change", (e) => updateUI(e.target.value));
-      updateUI("de");
 
+      // Borra la línea que decía updateUI("de");
+      // Y deja solo estas dos:
+      const initialLang = document.getElementById("langSelect").value;
+      updateUI(initialLang);
+      
       const scriptURL =
         "https://script.google.com/macros/s/AKfycbxRoJuVi7ckXZ5dejLBy3RegnbosYjli95FWrBP6ww9KX3r4S8c7-Behp9gHIQ0mzxdHQ/exec";
 
@@ -835,5 +839,6 @@
     </script>
   </body>
 </html>
+
 
 
